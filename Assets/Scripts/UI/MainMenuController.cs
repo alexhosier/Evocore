@@ -1,7 +1,6 @@
-using PlayFab;
+using Game;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 namespace UI
@@ -9,80 +8,45 @@ namespace UI
     public class MainMenuController : MonoBehaviour
     {
         // Variables
-        [Header("Main Screen References")] 
-        [SerializeField] private TMP_Text usernameText;
-        
-        [Header("Username References")]
-        [SerializeField] private GameObject usernamePanel;
-        [SerializeField] private TMP_InputField usernameInput;
-        
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private GameObject optionsMenu;
+
+        // Before the first frame
+        private void Start()
         {
-            #if UNITY_EDITOR
-
-            // Set the username text
-            usernameText.text = "EDITOR";
-
-            // Hide the username panel
-            usernamePanel.SetActive(false);
-            
-            // Login
-            PlayFabController.Instance.Login();
-
-            #endif
-            
-            #if UNITY_STANDALONE
-            
-            // Check if the user has chosen a name
-            if (PlayerPrefs.HasKey("Player_Username"))
-            {
-                // Set the username text
-                usernameText.text = PlayerPrefs.GetString("Player_Username");
-                
-                // Hide the username panel
-                usernamePanel.SetActive(false);
-                
-                // Login
-                PlayFabController.Instance.Login();
-            }
-            
-            #endif
+            // Hide the UI
+            optionsMenu.SetActive(false);
         }
 
-        // Submit username
-        public void SubmitUsername()
+        // Load the game
+        public void StartGame()
         {
-            // Generate player's name
-            var playerName = usernameInput.text + "#" + RandomNumber() + RandomNumber() + RandomNumber() + RandomNumber();
-            
-            // Set the player's name
-            PlayerPrefs.SetString("Player_Username", playerName);
-            
-            // Set the player's name on the UI
-            usernameText.text = playerName;
-            
-            // Hide the UI panel
-            usernamePanel.SetActive(false);
-            
-            // Login
-            PlayFabController.Instance.Login();
+            // Call the game to be started
+            GameManager.Instance.LoadGame();
         }
-
-        // TODO Loading screen
+        
+        // Open options
+        public void OpenOptions()
+        {
+            // TODO Load DATA
+            
+            // Open UI
+            optionsMenu.SetActive(true);
+        }
+        
+        // Close options
+        public void CloseOptions()
+        {
+            // TODO Save DATA
+            
+            // Close UI
+            optionsMenu.SetActive(false);
+        }
         
         // Code to exit the game
         public void ExitGame()
         {
             // Quit the application
             Application.Quit(0);
-        }
-        
-        // Generate a random number
-        private static int RandomNumber()
-        {
-            // Return a random int
-            return Random.Range(1, 10);
         }
     }
 }
