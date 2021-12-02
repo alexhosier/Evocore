@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGrowthTime: 60
   maxGrowthTime: 120
+  cropMinAmount: 4
+  cropMaxAmount: 5
   cropType: 1

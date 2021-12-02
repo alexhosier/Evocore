@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Wheat
   m_EditorClassIdentifier: 
   minGrowthTime: 60
-  maxGrowthTime: 240
+  maxGrowthTime: 120
+  cropMinAmount: 3
+  cropMaxAmount: 5
   cropType: 0
