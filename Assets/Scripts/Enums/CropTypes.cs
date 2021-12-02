@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CropTypes : MonoBehaviour
+namespace Enums
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum CropTypes
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Wheat,
+        Barley,
+        Oats
     }
 }
