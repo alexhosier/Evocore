@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
-public class FarmSettings : MonoBehaviour
+namespace Scriptable_Objects
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "farmSettings", menuName = "Evocore/Farm Settings")]
+    public class FarmSettings : ScriptableObject
     {
+        // Growth Settings
+        public int minGrowthTime;
+        public int maxGrowthTime;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        // Harvest Settings
+        public int cropMinAmount;
+        public int cropMaxAmount;
         
+        // Crop Settings
+        public CropTypes cropType;
     }
 }
