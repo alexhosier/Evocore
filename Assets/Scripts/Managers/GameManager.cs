@@ -1,16 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Game
+namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
         // Variables
         public static GameManager Instance { get; private set; }
         [SerializeField] private GameObject loadingScreen;
+
+        public int wheatAmount, barleyAmount, oatsAmount;
     
         private List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
     
@@ -22,6 +25,15 @@ namespace Game
 
             // Load the title screen
             SceneManager.LoadSceneAsync((int) SceneIndexes.Title, LoadSceneMode.Additive);
+        }
+
+        // Called before first frame
+        private void Start()
+        {
+            // Fetch the amount of crops stored from last session
+            wheatAmount = PlayerPrefs.GetInt("Player_Inventory_Wheat");
+            barleyAmount = PlayerPrefs.GetInt("Player_Inventory_Barley");
+            oatsAmount = PlayerPrefs.GetInt("Player_Inventory_Oats");
         }
 
         // Load the game
@@ -56,6 +68,14 @@ namespace Game
             // Hide the loading screen
             loadingScreen.SetActive(false);
         }
-    
+
+        // Save all players data
+        private void OnApplicationQuit()
+        {
+            // Save players data in PlayerPrefs
+            PlayerPrefs.SetInt("Player_Inventory_Wheat", wheatAmount);
+            PlayerPrefs.SetInt("Player_Inventory_Barley", barleyAmount);
+            PlayerPrefs.SetInt("Player_Inventory_Oats", oatsAmount);
+        }
     }
 }
