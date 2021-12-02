@@ -1,4 +1,4 @@
-using Game;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
