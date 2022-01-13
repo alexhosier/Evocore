@@ -61,6 +61,7 @@ namespace Managers
                 // While they aren't complete
                 while (!scenesLoading[i].isDone)
                 {
+                    // Prevent the GameManager class from moving on
                     yield return null;
                 }
             }
